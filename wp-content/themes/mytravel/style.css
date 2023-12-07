@@ -4,3 +4,50 @@ Author: Jing ZHANG
 Description: Ma première création du thème Wordpress !
 Version: 1.0
 */
+
+body {
+    font-family: "Raleway", sans-serif;
+}
+
+
+/* section image  */
+#main-picture {
+    background-image: url(./screenshot.png);
+    height: 58vh;
+}
+
+#overlay {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(71, 167, 198, 0.4);
+}
+
+#footer-picture {
+    background-image: url(./assets/plage.jpeg);
+    background-repeat: no-repeat;
+    background-position: 100%;
+    background-size: cover;
+    height: 75vh;
+    
+}
+
+#footer-body, .footer-nav-bar {
+    background-color: #B5DCE8;
+}
+
+hr {
+    width: 30%;
+    margin: auto;
+}
+
+.title-bleu {
+    color: #08AEEA !important
+}
+
+
+
+
+
+
