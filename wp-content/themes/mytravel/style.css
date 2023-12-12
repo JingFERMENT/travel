@@ -34,20 +34,14 @@ body {
 }
 
 #footer-body, .footer-nav-bar {
-    background-color: #B5DCE8;
-}
-
-hr {
-    width: 30%;
-    margin: auto;
+    background-color: #39464C;
 }
 
 .title-bleu {
     color: #08AEEA !important
 }
 
-
-
-
-
-
+.image-letter-footer {
+    width: 28px;
+    height: 26px;
+}

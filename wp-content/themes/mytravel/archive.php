@@ -5,79 +5,59 @@
 
     <!-- category card title -->
     <div class="container text-center mb-3 mb-lg-5">
-        <h2 class="fw-bold">Catégorie 1</h2>
-        <hr>
-        <p>Description de la catégorie sur plusieurs lignes...</p>
+        <?php $categories = get_the_category();
+        foreach ($categories as $category) {
+            $categoryName = $category->cat_name;
+            $categoryDescription = $category->description;
+        } ?><h2 class="fw-bold">
+            <?= $categoryName ?>
+        </h2>
+        <img src="<?= get_template_directory_uri() . '/assets/img/image_vaguette-removebg-preview.png' ?>" alt="image d'une vaguette">
+        <h5 class="py-2"><?= $categoryDescription ?></h5>
     </div>
 
 
     <div class="row">
-        <!-- category card 1 -->
-        <div class="col-12 col-lg-4">
-            <div class="card rounded-0 mb-3 mx-lg-5">
-                <img src="/wp-content/themes/mytravel/assets/img/paris.jpeg" class="img-fluid card-img-top rounded-0" alt="...">
-                <div class="card-body p-5">
-                    <h5 class="card-title fw-bold title-bleu">Titre de l'article</h5>
-                    <p class="card-text">Description de l'article sur plusieurs lignes.</p>
-                </div>
-            </div>
-        </div>
+        <?php
+        // 1. arguments pour définir la récupération des données
+        $args = array(
+            'post_type' => 'post', // type de publication
+            'category_name' => $categoryName,
+            'posts_per_page' => -1, // tous les articles
+        );
 
-        <!-- category card 2-->
-        <div class="col-12 col-lg-4">
-            <div class="card rounded-0 mb-3 mx-lg-5">
-                <img src="/wp-content/themes/mytravel/assets/img/paris.jpeg" class="img-fluid card-img-top rounded-0" alt="...">
-                <div class="card-body p-5">
-                    <h5 class="card-title fw-bold title-bleu">Titre de l'article</h5>
-                    <p class="card-text">Description de l'article sur plusieurs lignes.</p>
-                </div>
-            </div>
-        </div>
+        // 2. exécuter la WP Query
+        $the_query = new WP_Query($args);
 
-        <!-- category card 3 -->
-        <div class="col-12 col-lg-4">
-            <div class="card rounded-0 mb-3 mx-lg-5">
-                <img src="/wp-content/themes/mytravel/assets/img/paris.jpeg" class="img-fluid card-img-top rounded-0" alt="...">
-                <div class="card-body p-5">
-                    <h5 class="card-title fw-bold title-bleu">Titre de l'article</h5>
-                    <p class="card-text">Description de l'article sur plusieurs lignes.</p>
+        // 3. lancer la boucle 
+        if ($the_query->have_posts()) : while ($the_query->have_posts()) : $the_query->the_post(); ?>
+                <!-- category card  -->
+                <div class="col-12 col-lg-4 mb-5">
+                    <a class="text-decoration-none" target="_blank" href="<?php the_permalink() ?>">
+                        <div class="card rounded-0 mb-3 mx-lg-5 h-100 border-0">
+                            <div class="h-50">
+                                <?php the_post_thumbnail('large', array('class' => 'object-fit-cover w-100 h-100')); ?>
+                            </div>
+                            <div class="card-body p-5 h-50">
+                                <h5 class="card-title fw-bold title-bleu"><?php the_title() ?></h5>
+                                <p class="card-text">
+                                    <?php
+                                    $excerpt = get_the_excerpt();
+                                    $excerpt = substr($excerpt, 0, 100); // Only display first 100 characters of excerpt
+                                    $result = substr($excerpt, 0, strrpos($excerpt, ' ')) . '...';
+                                    echo $result;
+                                    ?>
+                                </p>
+                            </div>
+                        </div>
+                    </a>
                 </div>
-            </div>
-        </div>
-
-        <!-- category card 4 -->
-        <div class="col-12 col-lg-4">
-            <div class="card rounded-0 mb-3 mx-lg-5">
-                <img src="/wp-content/themes/mytravel/assets/img/paris.jpeg" class="img-fluid card-img-top rounded-0" alt="...">
-                <div class="card-body p-5">
-                    <h5 class="card-title fw-bold title-bleu">Titre de l'article</h5>
-                    <p class="card-text">Description de l'article sur plusieurs lignes.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- category card 5 -->
-        <div class="col-12 col-lg-4">
-            <div class="card rounded-0 mb-3 mx-lg-5">
-                <img src="/wp-content/themes/mytravel/assets/img/paris.jpeg" class="img-fluid card-img-top rounded-0" alt="...">
-                <div class="card-body p-5">
-                    <h5 class="card-title fw-bold title-bleu">Titre de l'article</h5>
-                    <p class="card-text">Description de l'article sur plusieurs lignes.</p>
-                </div>
-            </div>
-        </div>
-
-        <!-- category card 6 -->
-        <div class="col-12 col-lg-4">
-            <div class="card rounded-0 mb-3 mx-lg-5">
-                <img src="/wp-content/themes/mytravel/assets/img/paris.jpeg" class="img-fluid card-img-top rounded-0" alt="...">
-                <div class="card-body p-5">
-                    <h5 class="card-title fw-bold title-bleu">Titre de l'article</h5>
-                    <p class="card-text">Description de l'article sur plusieurs lignes.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+            <?php endwhile;
+            // 4. restore the $post global to the current post in the main query
+            wp_reset_postdata();
+        else : ?>
+            <p>Désolé, aucun article ne correspond à vos critères.</p>
+        <?php endif; ?>
 </section>
 
 <?php get_footer(); ?>
