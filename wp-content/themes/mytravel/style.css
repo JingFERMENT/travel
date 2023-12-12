@@ -21,7 +21,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgba(71, 167, 198, 0.4);
+    background-color: rgba(29, 109, 135, 0.4);
 }
 
 #footer-picture {
@@ -34,7 +34,7 @@ body {
 }
 
 #footer-body, .footer-nav-bar {
-    background-color: #39464C;
+    background-color: #3d4a50;
 }
 
 .title-bleu {

@@ -26,7 +26,7 @@
             'posts_per_page' => -1, // tous les articles
         );
 
-        // 2. exécuter la WP Query
+        // 2. exécuter la WP Query stretch-link
         $the_query = new WP_Query($args);
 
         // 3. lancer la boucle 
@@ -34,7 +34,7 @@
                 <!-- category card  -->
                 <div class="col-12 col-lg-4 mb-5">
                     <a class="text-decoration-none" target="_blank" href="<?php the_permalink() ?>">
-                        <div class="card rounded-0 mb-3 mx-lg-5 h-100 border-0">
+                        <div class="card rounded-0 mb-3 mx-lg-5 h-100">
                             <div class="h-50">
                                 <?php the_post_thumbnail('large', array('class' => 'object-fit-cover w-100 h-100')); ?>
                             </div>

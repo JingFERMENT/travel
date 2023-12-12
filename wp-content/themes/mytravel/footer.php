@@ -30,7 +30,10 @@
 
             // 3. lancer la boucle 
 
-            if ($popularpost->have_posts()) : while ($popularpost->have_posts()) : $popularpost->the_post(); ?>
+            if ($popularpost->have_posts()) : while ($popularpost->have_posts()) : $popularpost->the_post(); 
+            $category = get_the_category();
+            $categoryName = $category[0]->cat_name
+            ?>
                     <!-- footer card  -->
                     <div class="col-12 col-lg-4">
                         <a class="text-decoration-none" target="_blank" href="<?php the_permalink() ?>">
@@ -38,7 +41,7 @@
                                 <div class="h-50">
                                     <?php the_post_thumbnail('large', array('class' => 'object-fit-cover w-100 h-100')); ?>
                                     <div class="card-img-overlay px-0 text-end">
-                                        <h5><span class="badge text-bg-warning rounded-0 px-3">Catégorie</span></h5>
+                                        <h5><span class="badge text-bg-warning rounded-0 px-3"><?=$categoryName?></span></h5>
                                     </div>
                                 </div>
                                 <div class="card-body h-50 p-5">
@@ -76,7 +79,7 @@
     <section class="container-fluid footer-nav-bar">
         <div class="row py-5">
             <div class="col-12 col-md-4 text-center mb-5">
-                <h5 class="fw-bold text-white">Accès rapide</h5>
+                <h5 class="fw-bold text-white">Travel - Explorez le monde !</h5>
                 <!-- footer nav-bar -->
                 <ul class="nav flex-column">
                     <!-- ajout menu dynamique -->
@@ -106,12 +109,12 @@
             <!-- footer newsletter -->
             <div class="col-12 col-md-4 text-center text-white mb-5">
                 <form>
-                    <h6 class="fw-bold">Inscrivez-vous à notre newsletter</h6>
+                    <h5 class="fw-bold">Inscrivez-vous à notre newsletter</h5>
                     <div class="d-flex flex-column flex-sm-row w-100 gap-2">
                         <label for="newsletter" class="visually-hidden">Email</label>
                         <div class="input-group mx-5">
                             <input type="email" class="form-control rounded-0" placeholder="Entrez votre email" id="newsletter"></input>
-                            <button class="btn border-0 bg-info rounded-0" type="button" id="newsletter"><i class="bi bi-envelope-fill text-white fs-4"></i></button>
+                            <button class="btn border-0 bg-info rounded-0 " aria-label="newsletter" type="button" id="newsletter"><i class="bi bi-envelope-fill text-white fs-4"></i></button>
                         </div>
                     </div>
                 </form>

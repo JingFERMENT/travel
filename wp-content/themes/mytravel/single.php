@@ -18,6 +18,7 @@
                 'posts_per_page' => 3, // tous les articles
                 'order' => 'DESC',
                 'post__not_in' => array(($post->ID)),// exclure l'artcile déjà présent
+                // 'offset' => 1,
             );
 
             // 2. exécuter la WP Query
